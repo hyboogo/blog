@@ -2,7 +2,7 @@
 
 First download the file and check the file type:
 
-```
+```bash
 $ wget http://tasks.asis-ctf.ir/myheart_7cb6daec0c45b566b9584f98642a7123
 --2015-05-16 09:44:53--  http://tasks.asis-ctf.ir/myheart_7cb6daec0c45b566b9584f98642a7123
 Resolving tasks.asis-ctf.ir (tasks.asis-ctf.ir)... 79.127.125.110
@@ -20,7 +20,7 @@ I recommend you guys to use [Dshell](https://github.com/USArmyResearchLab/Dshell
 
 After installation I fire Dshell:
 
-```
+```bash
 $ ./dshell
 Dshell> decode -d web ./myheart
 web 2015-04-12 06:15:23  192.168.221.128:54391 <-    87.107.124.13:80    ** GET a.asis.io/LoiRLUoq HTTP/1.1                                                  // 206 Partial Content  2015-04-11 10:34:58 **
@@ -50,7 +50,7 @@ web 2015-04-12 06:17:56  192.168.221.128:54415 <-    87.107.124.13:80    ** GET 
 
 A bunch of HTTP partical contents. Let's reassamble the RAW data.
 
-```
+```bash
 Dshell> decode -d rip-http --bpf "tcp and port 80" ./myheart
 rip-http 2015-04-12 06:15:23  192.168.221.128:54391 <-    87.107.124.13:80    ** New file: LoiRLUoq (a.asis.io/LoiRLUoq) **
  --> Range: 1080486 - 1345387
@@ -90,7 +90,7 @@ $ xxd LoiRLUoq | head -n5
 It looks like a PNG file, since that `pHYs` is a chunk signature of PNG. I think there may exist some tools to examine the chunk signature of files. They should not only regonize the file header but also the chunks. That can save some time when you encounter some rare file types. Let me know if you find one.
 It is wired that [wikipedia](http://en.wikipedia.org/wiki/List_of_file_signatures) suggests the header of a PNG file should contain only '89 50 4E 47 0D 0A 1A 0A'. These are only 8 bytes. But according to the captured file we need 13 bytes. Download a random PNG image file from Internet and then check the header:
 
-```
+```bash
 $ file cat.png ; xxd cat.png | head -n5
 cat.png: PNG image data, 276 x 453, 8-bit/color RGBA, non-interlaced
 00000000: 8950 4e47 0d0a 1a0a 0000 000d 4948 4452  .PNG........IHDR
@@ -102,7 +102,7 @@ cat.png: PNG image data, 276 x 453, 8-bit/color RGBA, non-interlaced
 
 Now we have a valid header which is '8950 4e47 0d0a 1a0a 0000 000d 49'. Use a hex editor to change the first 13 bytes and open the resulted image. Cheers you have the flag.
 
-```
+```bash
 $ tesseract /vagrant/LoiRLUoq1.tiff ./outtext
 Tesseract Open Source OCR Engine v3.03 with Leptonica
 $ cat outtext.txt
