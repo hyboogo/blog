@@ -1,4 +1,4 @@
-# A Simplied Guide To Dynamic Linking
+# A Simplfied Guide To Dynamic Linking
 
 A demo program that you already know:
 
