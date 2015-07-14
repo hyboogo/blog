@@ -1,6 +1,6 @@
 # Overthewire Vortex Level 4 Writeup
 
-This one is a "non-standard" format string overflow. I say non-standard since the start address of the first argument of `printf` of the "standard" one is usually fixed. If your input length is not a constant, you will find debugging of this program is completely disater.
+This one is a "non-standard" format string overflow. I say non-standard since the start address of the first argument of `printf` of the "standard" one is usually fixed. If your input length is not a constant, you will find debugging of this program is completely a disaster.
 
 ```c
 // -- andrewg, original author was zen-parse :)
