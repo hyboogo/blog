@@ -1,6 +1,6 @@
-Overthewire Vortex Level 3 Writeup
+# Overthewire Vortex Level 3 Writeup
 
-This one is a simplied one. But the pointer of pointer can be confused.
+This one is a simplified one. But the pointer of pointer can be confused.
 
 ```
 (gdb) disas main
