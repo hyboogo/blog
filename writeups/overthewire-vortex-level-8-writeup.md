@@ -54,7 +54,7 @@ So here is the plan: overflow the saved EIP in `unsafecode` to jump to the first
 Shellcode in used:
 
 ```
-objdump -d sc1.o
+$ objdump -d sc1.o
 
 sc1.o:     file format elf32-i386
 
@@ -68,7 +68,7 @@ Disassembly of section .text:
   11: ff d3                 call   *%ebx
 ```
 
-`$0x804a001` is used to prevent \x00 from existing. And I hope there is something in the stack top to feed the arg of `sleep`.
+`$0x804a001` is used to prevent \x00 from existing. And I hope there is something in the stack top to feed the arg of `sleep`. Change the `$0x804a00c` to the addr of the second shellcode.
 
 The final exploit:
 
